@@ -221,9 +221,7 @@ def writeToXML(excel_file_name = None):
         with open(xml_file_name, "r", encoding="utf-8") as fhand:
             original_data = fhand.read()
         list1 = str(bs_data).split('>\n')
-        print(list1[0:20])
         list2 = str(original_data).split('>\n')
-        print(list2[0:20])
         if len(list1) != len(list2):
             print("Arrays aren't the same length!")
         else:
@@ -234,7 +232,6 @@ def writeToXML(excel_file_name = None):
                     target = re.search('\<target\>(.*)\<\/target', list1[i], re.DOTALL).group(1)
                     old_target = re.search('\<target\>(.*)\<\/target', list2[i], re.DOTALL).group(1)
                     list2[i] = re.sub(old_target, target, list2[i], re.DOTALL)
-        print(list2[0:20])
         new_data = '>\n'.join(list2)
         with open("test.xlf", "w", encoding="utf-8") as fhand2:
             fhand2.write(new_data)
